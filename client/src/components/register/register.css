@@ -1,0 +1,41 @@
+.register-form {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+.register-form button,
+.register-form input {
+  background-color: rgba(100, 255, 214, 0.085);
+  border-radius: 30px;
+  border: none;
+  padding: 1rem;
+  width: 100%;
+  transition: all 0.5s ease-in-out;
+  font-size: 1rem;
+}
+.register-form button {
+  margin: auto;
+  margin-top: 1rem;
+  width: 50%;
+  background-color: rgba(81, 205, 212, 0.404);
+}
+.register-form input:hover {
+  background-color: rgba(100, 148, 237, 0.287);
+}
+.register-form input:focus {
+  background-color: rgba(172, 201, 255, 0.701);
+}
+.register-form button:hover {
+  background-color: cornflowerblue;
+}
+.formError {
+  color: red;
+  text-align: center;
+  /* border: 1px solid red; */
+  border-radius: 5px;
+  background-color: rgba(143, 0, 0, 0.168);
+  width: 50%;
+  /* padding: 0.3rem; */
+  margin: 0.3rem;
+  margin: auto;
+}

@@ -1,0 +1,33 @@
+.dots2 {
+  width: 100px;
+  height: 50vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: auto;
+}
+.dot2 {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background: greenyellow;
+}
+.dot2:nth-child(1) {
+  animation: animate4 1s linear 0s infinite;
+}
+.dot2:nth-child(2) {
+  animation: animate4 1s linear 0.3s infinite;
+}
+.dot2:nth-child(3) {
+  animation: animate4 1s linear 0.6s infinite;
+}
+@keyframes animate4 {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+}

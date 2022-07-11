@@ -1,0 +1,12 @@
+.feedType {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 2px solid aliceblue;
+  width: 90%;
+}
+.feedOption {
+  padding: 20px;
+}

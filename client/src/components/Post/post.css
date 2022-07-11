@@ -1,0 +1,28 @@
+.post {
+  width: 70%;
+  margin: auto;
+  border-bottom: 1px dashed gray;
+}
+.userImage {
+  border-radius: 100%;
+  border: 1px solid black;
+  width: 75px;
+  height: 75px;
+  background-color: rgb(207, 255, 239);
+  text-align: center;
+}
+.userName {
+  font-weight: 600;
+}
+
+.userInfo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+}
+.postReadMore {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
