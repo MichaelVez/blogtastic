@@ -1,0 +1,60 @@
+.settings {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+.settings button,
+.settings input {
+  background-color: rgba(100, 255, 214, 0.085);
+  border-radius: 30px;
+  border: none;
+  padding: 1rem;
+  width: 50%;
+  margin: auto;
+  transition: all 0.5s ease-in-out;
+  font-size: 1rem;
+}
+.settings button {
+  margin: auto;
+  margin-top: 1rem;
+  width: 50%;
+  background-color: rgba(81, 205, 212, 0.404);
+}
+.settings input:hover {
+  background-color: rgba(100, 148, 237, 0.287);
+}
+.settings input:focus {
+  background-color: rgba(172, 201, 255, 0.701);
+}
+.settings button:hover {
+  background-color: cornflowerblue;
+}
+
+#bio {
+  background-color: rgba(100, 255, 214, 0.085);
+  border-radius: 30px;
+  border: none;
+  padding: 1rem;
+  width: 50%;
+  margin: auto;
+  transition: all 0.5s ease-in-out;
+  font-size: 1rem;
+}
+.image-preview {
+  text-align: center;
+  height: 20vh;
+}
+.image-preview img {
+  height: 20vh;
+  border-radius: 50%;
+}
+
+.fileUploadBtn {
+  border: 1px solid;
+  width: 33%;
+  margin: auto;
+  cursor: pointer;
+  text-align: center;
+  background-color: rgba(100, 255, 214, 0.082);
+  border-radius: 30px;
+}

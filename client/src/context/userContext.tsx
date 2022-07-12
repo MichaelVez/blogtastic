@@ -6,23 +6,23 @@ type states = {
       token: string;
     }>
   >;
-  userState?: { userName?: string };
+  userState?: { userName?: string; email?: string; img?: string; _id?: string };
   user: {
     user: {
       email: string;
-      password: string;
       tokens: never[];
       userName: string;
       _id: string;
+      img: string;
     };
   };
   setUser: React.Dispatch<
     React.SetStateAction<{
       email: string;
-      password: string;
       tokens: [];
       userName: string;
       _id?: string;
+      img?: string;
     }>
   >;
 };
@@ -33,9 +33,9 @@ const initState: states = {
     user: {
       userName: "",
       email: "",
-      password: "",
       tokens: [],
       _id: "",
+      img: "",
     },
   },
   setUser: () => {},

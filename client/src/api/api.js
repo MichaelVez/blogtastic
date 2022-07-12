@@ -17,16 +17,26 @@ export const createNewUser = async (newUser) => {
     return err;
   }
 };
+export const updateUser = async (updatedUser) => {
+  try {
+    console.log(updatedUser);
+    const response = await myApi.put("/update", updatedUser);
+    const user = response.data;
+    return user;
+  } catch (err) {
+    return err;
+  }
+};
 
-// export const loginUser = async (userLogin) => {
-//   try {
-//     const response = await axios.post(`${baseURL}/login`, userLogin);
-//     const user = response.data;
-//     return user;
-//   } catch (err) {
-//     return err;
-//   }
-// };
+export const loginUser = async (userLogin) => {
+  try {
+    const response = await myApi.post(`/login`, userLogin);
+    const user = response.data;
+    return user;
+  } catch (err) {
+    return err;
+  }
+};
 
 // export const logoutUser = async (token) => {
 //   await axios.post(`${baseURL}/logout`, null, {

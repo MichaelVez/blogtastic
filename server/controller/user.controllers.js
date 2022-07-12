@@ -2,7 +2,6 @@ const User = require("../database/models/user.model.js");
 const bcryptjs = require("bcryptjs");
 
 const createNewUser = async (req, res) => {
-  console.log("hey");
   const userBody = req.body;
   try {
     const newUser = new User(userBody);
@@ -14,24 +13,39 @@ const createNewUser = async (req, res) => {
   }
 };
 
-// const loginUser = async (req, res) => {
-//   const { email, password } = req.body;
+const loginUser = async (req, res) => {
+  const { email, password } = req.body;
 
-//   try {
-//     // const user = await User.findByCredentials(email, password);
-//     const user = await User.findOne({ email });
-//     if (!user) return res.send({ error: "Unable To Login" });
+  try {
+    // const user = await User.findByCredentials(email, password);
+    const user = await User.findOne({ email });
+    if (!user) return res.send({ error: "Unable To Login" });
 
-//     const isMatch = await bcryptjs.compare(password, user.password);
-//     if (!isMatch) return res.send({ error: "Unable To Login" });
+    const isMatch = await bcryptjs.compare(password, user.password);
+    if (!isMatch) return res.send({ error: "Unable To Login" });
 
-//     const token = await user.generateAuthToken();
-//     res.send({ user, token });
-//   } catch (err) {
-//     res.send(err);
-//   }
-// };
+    const token = await user.generateAuthToken();
+    res.send({ user, token });
+  } catch (err) {
+    res.send(err);
+  }
+};
+const updateUser = async (req, res) => {
+  const reqBody = req.body;
+  console.log(reqBody);
+  try {
+    // const user = await User.findByCredentials(email, password);
+    const user = await User.findOne(reqBody.id);
+    if (!user) return res.send({ error: "Unable To Login" });
+    console.log(user);
+    // user.save();
 
+    res.send(user);
+  } catch (err) {
+    res.send(err);
+  }
+};
+//todo
 // const logoutUser = async (req, res) => {
 //   try {
 //     const updatedTokens = req.user.tokens.filter(
@@ -47,5 +61,7 @@ const createNewUser = async (req, res) => {
 
 module.exports = {
   createNewUser,
-  //  loginUser, logoutUser
+  loginUser,
+  updateUser,
+  // logoutUser
 };

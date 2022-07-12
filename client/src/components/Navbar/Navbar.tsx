@@ -4,7 +4,6 @@ import { AppContext } from "../../context/userContext";
 import "./navbar.css";
 export default function Navbar() {
   const context = useContext(AppContext);
-  console.log(context);
 
   return (
     <div className='navbar'>
@@ -13,12 +12,12 @@ export default function Navbar() {
         <>
           <Link to='/login'>Login</Link>
           <Link to='/register'>Sign up</Link>
-          {console.log("first if")}
-          {console.log(context.token)}
         </>
       ) : (
         <>
-          <Link to='/user'>{context.userState?.userName}</Link>
+          <Link to='/new-article'>New Article</Link>
+          <Link to='/profile'>{context.userState?.userName}</Link>
+          <Link to='/settings'>Settings</Link>
         </>
       )}
     </div>

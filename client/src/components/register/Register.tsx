@@ -51,12 +51,18 @@ export default function Register() {
         userCreated.response.statusText + " Email / User exists"
       );
     }
-
+    const filteredUser = {
+      userName: userCreated.user.userName,
+      email: userCreated.user.email,
+      _id: userCreated.user._id,
+      tokens: userCreated.user.tokens,
+      img: "./default-avatar.png",
+    };
     //set context
     context.setToken?.(userCreated.token);
-    context.setUser?.(userCreated.user);
+    context.setUser?.(filteredUser);
     localStorage.setItem("token", userCreated.token);
-    localStorage.setItem("user", userCreated.user);
+    localStorage.setItem("user", JSON.stringify(filteredUser));
     navigate("/");
   };
 

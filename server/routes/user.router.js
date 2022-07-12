@@ -1,17 +1,19 @@
 const express = require("express");
 const {
   createNewUser,
-  //   loginUser,
+  loginUser,
+  findByToken,
+  updateUser,
   //   logoutUser,
 } = require("../controller/user.controllers");
+const fileUpload = require("../middleware/file-upload");
 // const authentication = require("../middleware/authentication");
 
 const usersRouter = express.Router();
 
-// POST
 usersRouter.post("/create", createNewUser);
-
-// usersRouter.post("/login", loginUser);
+usersRouter.put("/update", fileUpload.single("image"), updateUser);
+usersRouter.post("/login", loginUser);
 
 // usersRouter.post("/logout", authentication, logoutUser);
 
