@@ -39,7 +39,10 @@ const updateUser = async (req, res) => {
       return res.status(400).send("user not found");
     }
     if (req.file) {
-      user.image = req.file.path.replace("server\\", "");
+      user.image = req.file.path
+        .replace("server\\", "")
+        .replace("server/", "")
+        .replace("server", "");
       console.log(user.image);
     }
     if (
