@@ -11,7 +11,7 @@ export const Profile = () => {
     <div>
       <div className='profile-top'>
         <div className='image-preview'>
-          <img src={context.userState?.img} alt='' />
+          <img src={context.userState?.image} alt='' />
         </div>
         <h3 className='profile-name'>{context.userState?.userName}</h3>
         <p>//todo bio todo</p>

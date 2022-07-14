@@ -7,7 +7,8 @@ interface IInput {
   userName: string | undefined;
   email: string | undefined;
   password: string | undefined;
-  img: string | undefined;
+  image: string | undefined;
+  _id: string | undefined;
 }
 export default function Settings() {
   const context = useContext(AppContext);
@@ -17,36 +18,38 @@ export default function Settings() {
     userName: context.userState?.userName,
     email: context.userState?.email,
     password: "",
-    img: "",
+    image: "",
+    _id: context.userState?._id,
   });
   //   todo onlick update
   const handleClick = async (e: any) => {
     e.preventDefault();
-    //elokim ishmor oti man (:
-    console.log(inputState);
-    const bodyReq = {
-      ...inputState,
-      id: context.userState?._id,
-    };
-    updateUser(bodyReq);
+    //todo verify input
+
+    const res = await updateUser(inputState);
+    // context.setUser?.(res);
+    // localStorage.setItem("user", res);
+    console.log(res);
+
+    console.log("func end");
   };
+
   //?state management
   const onChange = (e: any) => {
-    console.log(inputState);
-    console.log("here");
-
     setInputState({ ...inputState, [e.target.name]: e.target.value });
   };
   const navigate = useNavigate();
-
   useEffect(() => {
     if (!context.userState?.userName) {
       navigate("/");
     }
+    console.log(inputState);
+
+    // eslint-disable-next-line
   }, []);
   const fileUploadRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState();
-  const [previewUrl, setPreviewUrl]: any = useState(context.userState?.img);
+  const [previewUrl, setPreviewUrl]: any = useState(context.userState?.image);
   useEffect(() => {
     if (!file) {
       return;
@@ -62,8 +65,8 @@ export default function Settings() {
     fileUploadRef.current?.click();
   };
   const onChangeFile = (e: any) => {
-    setInputState({ ...inputState, [e.target.name]: e.target.files[0] });
     if (e.target.files && e.target.files.length === 1) {
+      setInputState({ ...inputState, [e.target.name]: e.target.files[0] });
       setFile(e.target.files[0]);
     }
   };
@@ -72,7 +75,7 @@ export default function Settings() {
       <form action=''>
         <div className='settings'>
           <div className='image-preview'>
-            {previewUrl && <img src={previewUrl} alt='select and image' />}
+            {previewUrl && <img src={previewUrl} alt='' />}
             {/* {!previewUrl && <div>upload a file or set and image</div>} */}
           </div>
           {/* //*username  */}
@@ -119,14 +122,14 @@ export default function Settings() {
           {/* //!invis input */}
           <input
             type='file'
-            id='file'
-            name='img'
+            id='image'
+            name='image'
             onChange={onChangeFile}
             style={{ display: "none" }}
             ref={fileUploadRef}
-            value={undefined}
             accept={".jpg,.png,.jpeg"}
           />
+          {/* // value={undefined} */}
           {/* //!submit */}
           <button onClick={handleClick} type='submit'>
             Update

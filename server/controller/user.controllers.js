@@ -30,17 +30,26 @@ const loginUser = async (req, res) => {
     res.send(err);
   }
 };
+//!
 const updateUser = async (req, res) => {
   const reqBody = req.body;
-  console.log(reqBody);
+  console.log("updating user with body");
+  console.log(reqBody._id);
   try {
-    // const user = await User.findByCredentials(email, password);
-    const user = await User.findOne(reqBody.id);
-    if (!user) return res.send({ error: "Unable To Login" });
+    const user = await User.findById(reqBody._id);
+    if (!user) {
+      console.log(user);
+      console.log("return with error user not found");
+      return res.status(400).send({ error: "user not found" });
+    }
+    console.log("this is found user");
     console.log(user);
-    // user.save();
-
+    user.image = req.file.path.replace("server ", "");
+    await user.save();
+    console.log("user saved");
+    res.status(201);
     res.send(user);
+    // res.send({ _id, userName, email, image, tokens });
   } catch (err) {
     res.send(err);
   }

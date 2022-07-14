@@ -33,7 +33,7 @@ export default function Login() {
       email: userLogin.user.email,
       _id: userLogin.user._id,
       tokens: userLogin.user.tokens,
-      img: userLogin.user.img || "./default-avatar.png",
+      image: userLogin.user.image || "./default-avatar.png",
     };
     context.setToken?.(userLogin.token);
     context.setUser?.(filteredUser);

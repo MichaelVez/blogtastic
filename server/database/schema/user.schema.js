@@ -33,7 +33,7 @@ const userSchema = mongoose.Schema({
     minlength: 4,
     trim: true,
   },
-  img: {
+  image: {
     type: mongoose.Schema.Types.Mixed,
     default: "./default-avatar.png",
   },
