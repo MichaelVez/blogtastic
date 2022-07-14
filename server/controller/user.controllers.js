@@ -33,12 +33,9 @@ const loginUser = async (req, res) => {
 //!
 const updateUser = async (req, res) => {
   const reqBody = req.body;
-  console.log("updating user with body");
-  console.log(reqBody._id);
   try {
     const user = await User.findById(reqBody._id);
     if (!user) {
-      console.log(user);
       console.log("return with error user not found");
       return res.status(400).send({ error: "user not found" });
     }

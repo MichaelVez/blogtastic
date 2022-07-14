@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { updateUser } from "../../api/api";
 import { AppContext } from "../../context/userContext";
+import Spinner from "../spinner/Spinner";
+
 import "./settings.css";
 interface IInput {
   userName: string | undefined;
@@ -11,6 +13,8 @@ interface IInput {
   _id: string | undefined;
 }
 export default function Settings() {
+  const [spinnerState, setSpinnerState] = useState(false);
+
   const context = useContext(AppContext);
   //   const [spinnerState, setSpinnerState] = useState(false);
   const [formError, setFormError] = useState<string | boolean>(false);
@@ -25,8 +29,9 @@ export default function Settings() {
   const handleClick = async (e: any) => {
     e.preventDefault();
     //todo verify input
-
+    setSpinnerState(true);
     const res = await updateUser(inputState);
+    setSpinnerState(false);
     // context.setUser?.(res);
     // localStorage.setItem("user", res);
     console.log(res);
@@ -71,71 +76,77 @@ export default function Settings() {
     }
   };
   return (
-    <div>
-      <form action=''>
-        <div className='settings'>
-          <div className='image-preview'>
-            {previewUrl && <img src={previewUrl} alt='' />}
-            {/* {!previewUrl && <div>upload a file or set and image</div>} */}
-          </div>
-          {/* //*username  */}
-          <input
-            type='text'
-            placeholder='Your user name'
-            name='userName'
-            value={inputState.userName}
-            onChange={onChange}
-          />
-          {/* //*email */}
-          <input
-            type='text'
-            placeholder='Your email'
-            name='email'
-            value={inputState.email}
-            onChange={onChange}
-          />
-          {/* //* password */}
-          <input
-            type='text'
-            placeholder='New password'
-            name='password'
-            value={inputState.password}
-            onChange={onChange}
-          />
-          {/* //!todo BIO */}
-          <textarea
-            name=''
-            placeholder='Bio'
-            id='bio'
-            cols={20}
-            rows={5}
-            // onChange={onChange}
-          ></textarea>
-          {/* //!todo BIO */}
-          {/* //*img url */}
+    <>
+      {spinnerState ? (
+        <Spinner />
+      ) : (
+        <div>
+          <form action=''>
+            <div className='settings'>
+              <div className='image-preview'>
+                {previewUrl && <img src={previewUrl} alt='' />}
+                {/* {!previewUrl && <div>upload a file or set and image</div>} */}
+              </div>
+              {/* //*username  */}
+              <input
+                type='text'
+                placeholder='Your user name'
+                name='userName'
+                value={inputState.userName}
+                onChange={onChange}
+              />
+              {/* //*email */}
+              <input
+                type='text'
+                placeholder='Your email'
+                name='email'
+                value={inputState.email}
+                onChange={onChange}
+              />
+              {/* //* password */}
+              <input
+                type='text'
+                placeholder='New password'
+                name='password'
+                value={inputState.password}
+                onChange={onChange}
+              />
+              {/* //!todo BIO */}
+              <textarea
+                name=''
+                placeholder='Bio'
+                id='bio'
+                cols={20}
+                rows={5}
+                // onChange={onChange}
+              ></textarea>
+              {/* //!todo BIO */}
+              {/* //*img url */}
 
-          <div onClick={fileUploadClick} className='fileUploadBtn'>
-            Upload image
-          </div>
+              <div onClick={fileUploadClick} className='fileUploadBtn'>
+                Upload image
+              </div>
 
-          <h4 className='formError'>{formError}</h4>
-          {/* //!invis input */}
-          <input
-            type='file'
-            id='image'
-            name='image'
-            onChange={onChangeFile}
-            style={{ display: "none" }}
-            ref={fileUploadRef}
-            accept={".jpg,.png,.jpeg"}
-          />
-          {/* // value={undefined} */}
-          {/* //!submit */}
-          <button onClick={handleClick} type='submit'>
-            Update
-          </button>
+              <h4 className='formError'>{formError}</h4>
+              {/* //!invis input */}
+              <input
+                type='file'
+                id='image'
+                name='image'
+                onChange={onChangeFile}
+                style={{ display: "none" }}
+                ref={fileUploadRef}
+                accept={".jpg,.png,.jpeg"}
+              />
+              {/* // value={undefined} */}
+              {/* //!submit */}
+              <button onClick={handleClick} type='submit'>
+                Update
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
-    </div>
+      )}
+    </>
   );
 }
