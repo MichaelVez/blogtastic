@@ -40,6 +40,7 @@ const updateUser = async (req, res) => {
     }
     if (req.file) {
       user.image = req.file.path.replace("server\\", "");
+      console.log(user.image);
     }
     if (
       reqBody.password &&

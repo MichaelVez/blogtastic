@@ -60,6 +60,7 @@ export default function Settings() {
         return;
       }
     }
+    res.image = res.image.replace("server\\", "");
     context.setUser?.(res);
     localStorage.setItem("user", JSON.stringify(res));
     navigate("/profile");
