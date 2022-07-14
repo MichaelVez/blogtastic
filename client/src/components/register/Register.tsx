@@ -22,6 +22,7 @@ export default function Register() {
   });
   const navigate = useNavigate();
   const context = useContext(AppContext);
+  console.log(inputState);
 
   const handleChange = (e: any) => {
     setInputState({ ...inputState, [e.target.name]: e.target.value });
@@ -127,7 +128,7 @@ export default function Register() {
     </>
   );
 }
-const validateEmail = (email: string) => {
+export const validateEmail = (email: string) => {
   return String(email)
     .toLowerCase()
     .match(

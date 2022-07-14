@@ -16,17 +16,21 @@ app.use(cors());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 app.use("/userAuth", usersRouter);
-//?check file if error
+
+app.use(express.static(path.resolve(__dirname, "../client/build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../client/build/index.html"));
+});
 app.use((error, req, res, next) => {
   if (req.file) {
     fs.unlink(req.file.path, (err) => {
       console.log(err);
     });
   }
-});
-
-app.use(express.static(path.resolve(__dirname, "../client/build")));
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../client/build/index.html"));
+  if (res.headerSent) {
+    return next(error);
+  }
+  res.status(error.code || 500);
+  res.json({ message: error.message || "An unknown error occurred!" });
 });
 module.exports = app;

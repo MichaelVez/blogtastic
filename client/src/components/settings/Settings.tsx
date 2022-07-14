@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { updateUser } from "../../api/api";
 import { AppContext } from "../../context/userContext";
+import { validateEmail } from "../register/Register";
 import Spinner from "../spinner/Spinner";
 
 import "./settings.css";
@@ -28,15 +29,40 @@ export default function Settings() {
   //   todo onlick update
   const handleClick = async (e: any) => {
     e.preventDefault();
-    //todo verify input
+    //!verify input
+    if (inputState.password!.length !== 0) {
+      if (inputState.password!.length < 4) {
+        return setFormError("password is too short");
+      }
+      if (inputState.password!.length > 50) {
+        return setFormError("password is too long");
+      }
+    }
+    if (!validateEmail(inputState.email!)) {
+      return setFormError("invalid email");
+    }
+    if (inputState.userName!.length < 4) {
+      return setFormError("User name must be at least 4 characters");
+    }
+    if (inputState.userName!.length > 50) {
+      return setFormError("User name too long");
+    }
+    //? end verify input
     setSpinnerState(true);
     const res = await updateUser(inputState);
     setSpinnerState(false);
-    // context.setUser?.(res);
-    // localStorage.setItem("user", res);
-    console.log(res);
-
-    console.log("func end");
+    if (res.response && res.response.status !== 201) {
+      //in case file is too big
+      if (typeof res.response.data === "string")
+        return setFormError(res.response.data);
+      else {
+        console.log(res);
+        return;
+      }
+    }
+    context.setUser?.(res);
+    localStorage.setItem("user", JSON.stringify(res));
+    navigate("/profile");
   };
 
   //?state management

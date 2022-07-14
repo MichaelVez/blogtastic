@@ -43,6 +43,7 @@
 .image-preview {
   text-align: center;
   height: 20vh;
+  border: 1px solid;
 }
 .image-preview img {
   height: 20vh;

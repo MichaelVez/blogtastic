@@ -36,19 +36,51 @@ const updateUser = async (req, res) => {
   try {
     const user = await User.findById(reqBody._id);
     if (!user) {
-      console.log("return with error user not found");
-      return res.status(400).send({ error: "user not found" });
+      return res.status(400).send("user not found");
     }
-    console.log("this is found user");
-    console.log(user);
-    user.image = req.file.path.replace("server ", "");
+    if (req.file) {
+      user.image = req.file.path.replace("server\\", "");
+    }
+    if (
+      reqBody.password &&
+      reqBody.password.length >= 4 &&
+      reqBody.password.length < 50
+    ) {
+      user.password = reqBody.password;
+    }
+    if (reqBody.userName && reqBody.userName !== user.userName) {
+      //check if uniqe
+      const findIfThisUserName = await !User.findOne({
+        userName: reqBody.userName,
+      });
+      if (!findIfThisUserName) {
+        console.log("uniq user");
+        user.userName = reqBody.userName;
+      } else {
+        console.log("not uniq user");
+        return res.status(401).send("user name already exists");
+      }
+    }
+    if (reqBody.email && reqBody.email !== user.email) {
+      const findIfThisMailExist = await !User.findOne({
+        email: reqBody.email,
+      });
+      if (!findIfThisMailExist) {
+        console.log("uniq mail");
+        user.email = reqBody.email;
+      } else {
+        console.log("not uniq mail");
+        return res.status(400).send("email already exists");
+      }
+    }
+    // if (reqBody.bio) {
+    //   user.bio = reqBody.bio;
+    // }
     await user.save();
-    console.log("user saved");
-    res.status(201);
-    res.send(user);
-    // res.send({ _id, userName, email, image, tokens });
-  } catch (err) {
-    res.send(err);
+    let { email, image, tokens, userName, _id } = user;
+    return res.status(201).send({ email, image, tokens, userName, _id });
+  } catch (e) {
+    res.send("an error has occoured");
   }
 };
 //todo

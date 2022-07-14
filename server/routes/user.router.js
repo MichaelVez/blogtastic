@@ -12,7 +12,14 @@ const fileUpload = require("../middleware/file-upload");
 
 const usersRouter = express.Router();
 usersRouter.post("/create", createNewUser);
-usersRouter.post("/update", fileUpload.single("image"), updateUser);
+usersRouter.post(
+  "/update",
+  fileUpload.single("image"),
+  updateUser,
+  (error, req, res, next) => {
+    res.status(400).send(error.message);
+  }
+);
 usersRouter.post("/login", loginUser);
 
 // usersRouter.post("/logout", authentication, logoutUser);

@@ -21,18 +21,15 @@ export const updateUser = async (updatedUser) => {
   try {
     const formData = new FormData();
     //todo
-    console.log(formData);
     formData.append("email", updatedUser.email);
     formData.append("userName", updatedUser.userName);
     if (updatedUser.password && updatedUser.password.length >= 4) {
+      formData.append("password", updatedUser.password);
     }
-    formData.append("password", updatedUser.password);
     formData.append("_id", updatedUser._id);
     if (updatedUser.image) formData.append("image", updatedUser.image);
-    console.log("here1");
     const response = await axios.post(url + "/update", formData);
     // const response = await myApi.post("/update", formData);
-    console.log("here2");
     const user = response.data;
     return user;
   } catch (err) {
