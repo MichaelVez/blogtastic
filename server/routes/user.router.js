@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 const express = require("express");
 const {
   createNewUser,
@@ -17,7 +19,13 @@ usersRouter.post(
   fileUpload.single("image"),
   updateUser,
   (error, req, res, next) => {
-    res.status(400).send(error.message);
+    if (req.file && req.file.path) {
+      fs.unlink(req.file.path, (err) => {
+        console.log(err);
+        res.status(401).send(err.message);
+      });
+    }
+    res.status(401).send(error.message);
   }
 );
 usersRouter.post("/login", loginUser);
