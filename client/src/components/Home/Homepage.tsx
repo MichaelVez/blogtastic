@@ -1,6 +1,6 @@
 // import React, { useContext } from "react";
 // import { AppContext } from "../../context/userContext";
-import Post from "../post/Post";
+import Post from "../posts/Post";
 import "./homepage.css";
 export default function Homepage() {
   // const context = useContext(AppContext);
