@@ -6,7 +6,13 @@ type states = {
       token: string;
     }>
   >;
-  userState?: { userName?: string; email?: string; image?: string; _id?: string };
+  userState?: {
+    userName?: string;
+    email?: string;
+    image?: string;
+    _id?: string;
+    bio?: string;
+  };
   user: {
     user: {
       email: string;

@@ -37,6 +37,10 @@ const userSchema = mongoose.Schema({
     type: mongoose.Schema.Types.Mixed,
     default: "./default-avatar.png",
   },
+  bio: {
+    type: String,
+    default: "",
+  },
   tokens: [
     {
       token: {

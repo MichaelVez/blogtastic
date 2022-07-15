@@ -9,6 +9,7 @@ import { useContext, useEffect } from "react";
 import { AppContext } from "./context/userContext";
 import { Profile } from "./components/profile/Profile";
 import Settings from "./components/settings/Settings";
+import NewPost from "./components/newPost/NewPost";
 
 function App() {
   const context = useContext(AppContext);
@@ -33,6 +34,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/settings' element={<Settings />} />
+        <Route path='/new-article' element={<NewPost />} />
       </Routes>
     </div>
   );

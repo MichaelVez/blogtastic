@@ -22,6 +22,7 @@ export const updateUser = async (updatedUser) => {
     const formData = new FormData();
     //todo
     formData.append("email", updatedUser.email);
+    formData.append("bio", updatedUser.bio);
     formData.append("userName", updatedUser.userName);
     if (updatedUser.password && updatedUser.password.length >= 4) {
       formData.append("password", updatedUser.password);

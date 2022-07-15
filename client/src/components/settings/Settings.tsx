@@ -12,12 +12,11 @@ interface IInput {
   password: string | undefined;
   image: string | undefined;
   _id: string | undefined;
+  bio: string | undefined;
 }
 export default function Settings() {
   const [spinnerState, setSpinnerState] = useState(false);
-
   const context = useContext(AppContext);
-  //   const [spinnerState, setSpinnerState] = useState(false);
   const [formError, setFormError] = useState<string | boolean>(false);
   const [inputState, setInputState] = useState<IInput>({
     userName: context.userState?.userName,
@@ -25,6 +24,7 @@ export default function Settings() {
     password: "",
     image: "",
     _id: context.userState?._id,
+    bio: context.userState?.bio,
   });
   //   todo onlick update
   const handleClick = async (e: any) => {
@@ -132,7 +132,7 @@ export default function Settings() {
               />
               {/* //* password */}
               <input
-                type='text'
+                type='password'
                 placeholder='New password'
                 name='password'
                 value={inputState.password}
@@ -140,12 +140,12 @@ export default function Settings() {
               />
               {/* //!todo BIO */}
               <textarea
-                name=''
+                name='bio'
                 placeholder='Bio'
                 id='bio'
                 cols={20}
                 rows={5}
-                // onChange={onChange}
+                onChange={onChange}
               ></textarea>
               {/* //!todo BIO */}
               {/* //*img url */}

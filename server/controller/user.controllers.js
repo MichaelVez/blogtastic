@@ -77,12 +77,12 @@ const updateUser = async (req, res) => {
         return res.status(400).send("email already exists");
       }
     }
-    // if (reqBody.bio) {
-    //   user.bio = reqBody.bio;
-    // }
+    if (reqBody.bio) {
+      user.bio = reqBody.bio;
+    }
     await user.save();
-    let { email, image, tokens, userName, _id } = user;
-    return res.status(201).send({ email, image, tokens, userName, _id });
+    let { email, image, tokens, userName, _id, bio } = user;
+    return res.status(201).send({ bio, email, image, tokens, userName, _id });
   } catch (e) {
     res.send("an error has occoured");
   }
