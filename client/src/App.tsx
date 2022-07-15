@@ -9,6 +9,7 @@ import { useContext, useEffect } from "react";
 import { AppContext } from "./context/userContext";
 import { Profile } from "./components/profile/Profile";
 import Settings from "./components/settings/Settings";
+
 import NewPost from "./components/newPost/NewPost";
 
 function App() {
