@@ -6,11 +6,11 @@ const {
   loginUser,
   updateUser,
   //   logoutUser,
+  getUserWithId,
 } = require("../controller/user.controllers");
 const authentication = require("../middleware/auth");
 // const authentication = require("../middleware/auth");
 const fileUpload = require("../middleware/file-upload");
-// const authentication = require("../middleware/authentication");
 
 const usersRouter = express.Router();
 usersRouter.post("/create", createNewUser);
@@ -29,7 +29,7 @@ usersRouter.post(
   }
 );
 usersRouter.post("/login", loginUser);
-
+usersRouter.get("/user/:id", getUserWithId);
 // usersRouter.post("/logout", authentication, logoutUser);
 
 module.exports = usersRouter;

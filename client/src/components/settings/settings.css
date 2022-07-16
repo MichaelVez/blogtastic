@@ -1,3 +1,9 @@
+.settings-cont {
+  width: 90%;
+  margin: 1.5rem auto;
+  background-color: rgba(136, 221, 255, 0.349);
+  border-radius: 20px;
+}
 .settings {
   display: flex;
   flex-direction: column;
@@ -43,7 +49,6 @@
 .image-preview {
   text-align: center;
   height: 20vh;
-  border: 1px solid;
 }
 .image-preview img {
   height: 20vh;

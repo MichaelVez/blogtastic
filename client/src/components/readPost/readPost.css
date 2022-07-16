@@ -1,0 +1,23 @@
+.postContent {
+  border: 1px solid;
+}
+.blog_preview pre {
+  background-color: #f1f1f1;
+  padding: 20px 20px;
+  margin: 0;
+}
+.blog_preview > * {
+  margin: 1em 0;
+}
+.readPost {
+  width: 80%;
+  margin: 3rem auto;
+  background-color: rgba(200, 229, 255, 0.315);
+  padding: 1rem;
+  border-radius: 20px;
+}
+.post-head {
+  background-color: rgba(200, 229, 255, 0.445);
+  border-radius: 20px;
+  padding: 1rem;
+}

@@ -1,23 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { myApi } from "../../api/api";
 import "./post.css";
-export default function Post() {
+export default function Post(props: any) {
+  let [userName, setUserName] = useState("");
+  let [profileImg, setProfileImg] = useState("");
+  let fixedDate =
+    props.createdAt.slice(8, 10) +
+    "/" +
+    props.createdAt.slice(5, 7) +
+    "/" +
+    props.createdAt.slice(0, 4) +
+    " - " +
+    props.createdAt.slice(11, 16);
+  const getUserInfo = async () => {
+    const res = await myApi.get(`/user/${props.author}`);
+    setProfileImg(res.data.image);
+    setUserName(res.data.userName);
+  };
+  getUserInfo();
   return (
     <div className='post'>
       <div className='userInfo'>
-        <div className='userImage'> </div>
+        <div className='userImage'>
+          <img src={profileImg} alt='' className='postProfileImg' />
+        </div>
         <div>
-          <div className='userName'>Username</div>
-          <div>08/07/2022</div>
+          <div className='userName'>
+            By: {userName}, {fixedDate}
+          </div>
         </div>
       </div>
-      <div className='postDescription'>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi unde
-        cum atque ipsum magnam, praesentium consequatur, natus laboriosam cumque
-        quidem esse earum fugit tempora iure dolor adipisci nam officiis sed.
-      </div>
+      <h2>{props.title}</h2>
+      <h4 className='postDescription'>{props.headline}</h4>
       <div className='postReadMore'>
-        <div>Read More...</div>
-        <div>JS React Tech</div>
+        <div>
+          <Link to={`/blog/${props._id}`}>//todo Read More... Route</Link>
+        </div>
+        <div>TAGSS</div>
       </div>
     </div>
   );

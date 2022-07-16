@@ -1,8 +1,35 @@
 .navbar {
   display: flex;
-  background-color: aliceblue;
+  background-color: rgba(0, 255, 213, 0.055);
   height: 10vh;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar > * {
+  margin: 1.5rem;
+}
+.logo {
+  text-decoration: none;
+  font-size: 25px;
+  color: rgb(0, 174, 255);
+  font-weight: 900;
+}
+.right-nav {
+  display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+}
+.right-nav > * {
+  margin: 0.5rem;
+  color: gray;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+.right-nav > *:nth-child(1) {
+  color: black;
+  font-weight: 600;
 }

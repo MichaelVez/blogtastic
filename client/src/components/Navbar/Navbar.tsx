@@ -7,7 +7,9 @@ export default function Navbar() {
 
   return (
     <div className='navbar'>
-      <Link to='/'>Home</Link>
+      <Link to='/' className='logo'>
+        blogTastic
+      </Link>
       {context.token?.token === "1" ? (
         <>
           <Link to='/login'>Login</Link>
@@ -15,9 +17,17 @@ export default function Navbar() {
         </>
       ) : (
         <>
-          <Link to='/new-article'>New Article</Link>
-          <Link to='/profile'>{context.userState?.userName}</Link>
-          <Link to='/settings'>Settings</Link>
+          <div className='right-nav'>
+            <Link to='/new-article' property='test'>
+              <span className='material-symbols-outlined'>open_in_new</span>
+              New Article
+            </Link>
+            <Link to='/profile'>{context.userState?.userName}</Link>
+            <Link to='/settings'>
+              <span className='material-symbols-outlined'>settings</span>
+              Settings
+            </Link>
+          </div>
         </>
       )}
     </div>

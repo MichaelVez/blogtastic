@@ -107,7 +107,7 @@ export default function Settings() {
       {spinnerState ? (
         <Spinner />
       ) : (
-        <div>
+        <div className='settings-cont'>
           <form action=''>
             <div className='settings'>
               <div className='image-preview'>
@@ -141,7 +141,7 @@ export default function Settings() {
               {/* //!todo BIO */}
               <textarea
                 name='bio'
-                placeholder='Bio'
+                placeholder='Update Bio'
                 id='bio'
                 cols={20}
                 rows={5}

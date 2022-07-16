@@ -11,6 +11,7 @@ import { Profile } from "./components/profile/Profile";
 import Settings from "./components/settings/Settings";
 
 import NewPost from "./components/newPost/NewPost";
+import ReadPost from "./components/readPost/ReadPost";
 
 function App() {
   const context = useContext(AppContext);
@@ -22,10 +23,11 @@ function App() {
     if (tokenLocalStorage && userSignInLocalStorage) {
       context.setToken?.({ token: tokenLocalStorage });
       context.setUser?.(JSON.parse(userSignInLocalStorage));
-      console.log(context);
     }
     // eslint-disable-next-line
   }, []);
+  console.log(context);
+
   return (
     <div className='App'>
       <Navbar />
@@ -36,6 +38,8 @@ function App() {
         <Route path='/profile' element={<Profile />} />
         <Route path='/settings' element={<Settings />} />
         <Route path='/new-article' element={<NewPost />} />
+        <Route path='/new-article/:_id' element={<NewPost />} />
+        <Route path='/blog/:_id' element={<ReadPost />} />
       </Routes>
     </div>
   );

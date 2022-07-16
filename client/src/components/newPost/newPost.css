@@ -1,0 +1,75 @@
+.postInput1,
+.postInput2 {
+  margin: auto;
+  padding: 0.5rem;
+  /* border-radius: 0.5rem; */
+}
+.postInput1 {
+  width: 100%;
+  font-size: 22px;
+  margin: 0.5rem auto;
+  /* margin-bottom: 0.5rem; */
+}
+.postInput2 {
+  width: 100%;
+  font-size: 14px;
+  margin: 0.5rem auto;
+}
+/* .postInput {
+  width: 50%;
+  margin: auto;
+} */
+.container-post {
+  width: 90%;
+  margin: 0.5rem auto;
+  background-color: rgba(200, 229, 255, 0.137);
+  justify-content: space-evenly;
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+}
+.blog_handle {
+  cursor: pointer;
+  width: 30%;
+  margin: 1rem auto;
+  background-color: rgba(57, 223, 57, 0.473);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+.card {
+  min-height: 40vh;
+  border: 2px solid;
+  border-radius: 0.2rem;
+}
+.blog_link {
+  padding: 0.5rem;
+  margin: 1rem auto;
+  border-radius: 0.5rem;
+  text-align: center;
+  border: 1px solid;
+  width: 30%;
+  margin: auto;
+  background-color: rgba(57, 212, 223, 0.753);
+}
+.blog_preview {
+}
+
+.editTitle,
+.editHeadline {
+  width: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+/* .editHeadline {
+  margin: auto;
+  width: 50%;
+} */
+.editTitle label {
+  font-size: 22px;
+}
+.editTitle label,
+.editHeadline label {
+  width: 20%;
+}

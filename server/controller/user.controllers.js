@@ -30,6 +30,16 @@ const loginUser = async (req, res) => {
     res.send(err);
   }
 };
+const getUserWithId = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const result = await User.findOne({ _id: id });
+    const { userName, image } = result;
+    res.send({ userName, image });
+  } catch (err) {
+    res.status(400).send(err);
+  }
+};
 //!
 const updateUser = async (req, res) => {
   const reqBody = req.body;
@@ -43,7 +53,6 @@ const updateUser = async (req, res) => {
         .replace("server\\", "")
         .replace("server/", "")
         .replace("server", "");
-      console.log(user.image);
     }
     if (
       reqBody.password &&
@@ -58,10 +67,10 @@ const updateUser = async (req, res) => {
         userName: reqBody.userName,
       });
       if (!findIfThisUserName) {
-        console.log("uniq user");
+        // console.log("uniq user");
         user.userName = reqBody.userName;
       } else {
-        console.log("not uniq user");
+        // console.log("not uniq user");
         return res.status(401).send("user name already exists");
       }
     }
@@ -70,10 +79,10 @@ const updateUser = async (req, res) => {
         email: reqBody.email,
       });
       if (!findIfThisMailExist) {
-        console.log("uniq mail");
+        // console.log("uniq mail");
         user.email = reqBody.email;
       } else {
-        console.log("not uniq mail");
+        // console.log("not uniq mail");
         return res.status(400).send("email already exists");
       }
     }
@@ -106,4 +115,5 @@ module.exports = {
   loginUser,
   updateUser,
   // logoutUser
+  getUserWithId,
 };

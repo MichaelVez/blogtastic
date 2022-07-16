@@ -1,14 +1,15 @@
 .post {
   width: 70%;
-  margin: auto;
-  border-bottom: 1px dashed gray;
+  margin: 1rem auto;
+  border-bottom: 1.5px dashed gray;
+  background-color: rgba(220, 245, 255, 0.37);
+  padding: 1rem;
+  border-radius: 10px;
 }
-.userImage {
+.userImage img {
   border-radius: 100%;
-  border: 1px solid black;
-  width: 75px;
-  height: 75px;
-  background-color: rgb(207, 255, 239);
+  width: 45px;
+  height: 45px;
   text-align: center;
 }
 .userName {
@@ -25,4 +26,6 @@
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+}
+.postProfileImg {
 }
