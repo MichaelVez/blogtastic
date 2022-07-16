@@ -57,7 +57,8 @@ export default function Register() {
       email: userCreated.user.email,
       _id: userCreated.user._id,
       tokens: userCreated.user.tokens,
-      image: "./default-avatar.png",
+      image: "/default-avatar.png",
+      fave: [],
     };
     //set context
     context.setToken?.(userCreated.token);

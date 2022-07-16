@@ -42,6 +42,19 @@ const read = async (req, res, next) => {
     res.status(400).send("blog not found : " + err.message);
   }
 };
+const filterById = async (req, res, next) => {
+  const reqBody = req.body;
+  console.log(reqBody);
+  try {
+    const blogById = await Blog.find({ author: reqBody.userId });
+    console.log(blogById);
+    if (blogById[0]) res.status(200).send(blogById);
+    else return res.status(401).send("");
+  } catch (err) {
+    console.log(err);
+    res.status(400).send("blog not found : " + err.message);
+  }
+};
 
 const readAll = async (req, res, next) => {
   try {
@@ -90,6 +103,49 @@ const update = async (req, res, next) => {
     res.status(400).send(err);
   }
 };
+const like = async (req, res, next) => {
+  const reqBody = req.body;
+  console.log(reqBody);
+  try {
+    const result = await Blog.findById(reqBody.blogId);
+    // result.like = req.body.like;
+    result.likes = req.body.number;
+    const savedPost = await result.save();
+    res.status(200).send(savedPost);
+  } catch (err) {
+    console.log(err);
+
+    res.status(400).send(err);
+  }
+};
+const newComment = async (req, res, next) => {
+  const reqBody = req.body;
+  console.log("newCommentRoute");
+  console.log(reqBody);
+  console.log("newCommentRoute");
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  let mm = today.getMonth() + 1; // Months start at 0!
+  let dd = today.getDate();
+  if (dd < 10) dd = "0" + dd;
+  if (mm < 10) mm = "0" + mm;
+
+  const formattedToday = dd + "/" + mm + "/" + yyyy;
+  try {
+    const result = await Blog.findById(reqBody.postID);
+    result.comments.push({
+      createdAt: formattedToday,
+      text: reqBody.commentInputState,
+      userID: reqBody.userID,
+    });
+    const saveComment = await result.save();
+    res.status(200).send(saveComment);
+  } catch (err) {
+    console.log(err);
+
+    res.status(400).send(err);
+  }
+};
 
 // const deleteBlog = (req, res, next) => {
 //   logging.warn("Delete route called");
@@ -111,4 +167,12 @@ const update = async (req, res, next) => {
 //       });
 //     });
 // };
-module.exports = { createPost, readAll, read, update };
+module.exports = {
+  createPost,
+  readAll,
+  read,
+  update,
+  newComment,
+  filterById,
+  like,
+};

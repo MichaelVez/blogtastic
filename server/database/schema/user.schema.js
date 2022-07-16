@@ -35,7 +35,7 @@ const userSchema = mongoose.Schema({
   },
   image: {
     type: mongoose.Schema.Types.Mixed,
-    default: "./default-avatar.png",
+    default: "/default-avatar.png",
   },
   bio: {
     type: String,
@@ -49,6 +49,7 @@ const userSchema = mongoose.Schema({
       },
     },
   ],
+  fave: { type: Array },
 });
 
 userSchema.methods.generateAuthToken = async function () {

@@ -12,6 +12,7 @@ type states = {
     image?: string;
     _id?: string;
     bio?: string;
+    fave?: [];
   };
   user: {
     user: {

@@ -21,3 +21,46 @@
   border-radius: 20px;
   padding: 1rem;
 }
+.commentBoxCont {
+}
+.commentBox {
+  background-color: rgba(200, 229, 255, 0.445);
+  width: 75%;
+  border-radius: 20px;
+  margin: 1rem auto;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+.commentInput {
+  resize: vertical;
+  padding: 0.5rem;
+  width: 100%;
+  background-color: rgba(240, 255, 255, 0.37);
+  border: none;
+}
+.commentInputCont {
+  margin: auto;
+  width: 80%;
+}
+.commentBtn {
+  border-radius: 20px;
+  text-align: center;
+  margin: auto;
+  background-color: aliceblue;
+  border: none;
+  padding: 0.5rem;
+  width: 30%;
+  transition: all 0.5s ease;
+}
+.commentBtn:hover {
+  background-color: white;
+}
+.comments {
+  width: 80%;
+  margin: 1rem auto;
+}
+.postTitle {
+  font-size: 60px;
+}

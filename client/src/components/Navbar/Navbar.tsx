@@ -12,8 +12,14 @@ export default function Navbar() {
       </Link>
       {context.token?.token === "1" ? (
         <>
-          <Link to='/login'>Login</Link>
-          <Link to='/register'>Sign up</Link>
+          <div className='right-nav'>
+            <Link to='/login' className='login'>
+              Login
+            </Link>
+            <Link to='/register' className='register'>
+              Sign up
+            </Link>
+          </div>
         </>
       ) : (
         <>

@@ -12,6 +12,7 @@ import Settings from "./components/settings/Settings";
 
 import NewPost from "./components/newPost/NewPost";
 import ReadPost from "./components/readPost/ReadPost";
+import { myApi } from "./api/api";
 
 function App() {
   const context = useContext(AppContext);
@@ -24,6 +25,8 @@ function App() {
       context.setToken?.({ token: tokenLocalStorage });
       context.setUser?.(JSON.parse(userSignInLocalStorage));
     }
+    // const res = myApi.get(`/user/${context.userState?._id}`);
+    // getUserWithId(context.userState?._id);
     // eslint-disable-next-line
   }, []);
   console.log(context);
