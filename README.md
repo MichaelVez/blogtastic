@@ -1,2 +1,2 @@
 # blogtastic
-https://blogtastic-michaelvez.herokuapp.com/profile
+https://blogtastic-michaelvez.herokuapp.com/
