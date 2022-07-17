@@ -143,6 +143,7 @@ export default function Settings() {
                 name='bio'
                 placeholder='Update Bio'
                 id='bio'
+                value={inputState.bio}
                 cols={20}
                 rows={5}
                 onChange={onChange}
